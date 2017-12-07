@@ -6,7 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,10 @@ import butterknife.ButterKnife;
 public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAdapter.ViewHolder> {
 
     List<Student> studentList = new ArrayList<>();
+    Context context;
+    public CustomStudentsAdapter(Context _context) {
+        context=_context;
+    }
 
     public void setItems(List<Student> students) {
         studentList=students;
@@ -49,6 +56,14 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
             holder.textView2.setBackgroundColor(Color.RED);
             holder.textView2.setText("Offline");
         }
+
+        Picasso.with(context)
+                .load(R.mipmap.ic_launcher)
+                .centerInside()
+                .fit()
+                .into(holder.imageView);
+
+
     }
 
     @Override
@@ -61,6 +76,8 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
         TextView textView;
         @BindView(R.id.text2)
         TextView textView2;
+        @BindView(R.id.imageView)
+        ImageView imageView;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
