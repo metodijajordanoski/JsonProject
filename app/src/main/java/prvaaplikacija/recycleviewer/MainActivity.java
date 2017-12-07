@@ -29,27 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Student> generateList() {
         ArrayList<Student> students = new ArrayList<>();
-        students.add(new Student("Metodija",true));
-        students.add(new Student("ndjenjde",true));
-        students.add(new Student("Ela",true));
-        students.add(new Student("Neta",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
-        students.add(new Student("firjfri",true));
+        for (int i=0;i<100;i++) {
+            students.add(new Student("student"+i,true));
+        }
 
 
         return students;

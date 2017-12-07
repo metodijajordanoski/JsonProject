@@ -1,6 +1,7 @@
 package prvaaplikacija.recycleviewer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,13 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
         Student student = studentList.get(position);
 
         holder.textView.setText(student.getsName());
+        if(student.getsOnline()) {
+            holder.textView2.setText("Online");
+            holder.textView2.setBackgroundColor(Color.GREEN);
+        } else {
+            holder.textView2.setBackgroundColor(Color.RED);
+            holder.textView2.setText("Offline");
+        }
     }
 
     @Override
@@ -51,6 +59,8 @@ public class CustomStudentsAdapter extends RecyclerView.Adapter<CustomStudentsAd
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.text)
         TextView textView;
+        @BindView(R.id.text2)
+        TextView textView2;
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
