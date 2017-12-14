@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Student> generateList() {
         ArrayList<Student> students = new ArrayList<>();
-        for (int i=0;i<100;i++) {
-            students.add(new Student("student"+i,true));
-        }
+
+        students.add(new Student("student",true));
+
 
 
         return students;
