@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -24,7 +25,13 @@ public class MainImagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        CustomImagesAdapter adapter = new CustomImagesAdapter(this);
+        OnRecyclerviewClickListener onRecyclerviewClickListener =  new OnRecyclerviewClickListener() {
+            @Override
+            public void onRowClick(ImageData imageData) {
+                Toast.makeText(MainImagesActivity.this, "JAKA SLIKA", Toast.LENGTH_SHORT).show();
+            }
+        };
+        CustomImagesAdapter adapter = new CustomImagesAdapter(this,onRecyclerviewClickListener);
         adapter.setItems(generateList());
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(this,3));

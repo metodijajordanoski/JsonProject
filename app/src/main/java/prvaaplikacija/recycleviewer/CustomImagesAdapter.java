@@ -25,8 +25,12 @@ public class CustomImagesAdapter extends RecyclerView.Adapter<CustomImagesAdapte
 
     List<ImageData> ImageDataArrayList = new ArrayList<>();
     Context context;
-    public CustomImagesAdapter(Context _context) {
+    OnRecyclerviewClickListener onRecyclerviewClickListener;
+
+
+    public CustomImagesAdapter(Context _context,OnRecyclerviewClickListener _onRecyclerviewClickListener) {
         context=_context;
+        onRecyclerviewClickListener=_onRecyclerviewClickListener;
     }
 
     public void setItems(List<ImageData> images) {
@@ -46,9 +50,16 @@ public class CustomImagesAdapter extends RecyclerView.Adapter<CustomImagesAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ImageData image = ImageDataArrayList.get(position);
+        final ImageData image = ImageDataArrayList.get(position);
 
         holder.textView.setText(image.getTags());
+
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRecyclerviewClickListener.onRowClick(image);
+            }
+        });
 
         Picasso.with(context)
                 .load(image.getWebformatURL())
