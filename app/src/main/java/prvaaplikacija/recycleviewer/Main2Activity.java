@@ -1,13 +1,9 @@
 package prvaaplikacija.recycleviewer;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+import android.os.Bundle;
 
 import com.google.gson.Gson;
 
@@ -16,32 +12,23 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainImagesActivity extends AppCompatActivity {
-
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-
-
+public class Main2Activity extends AppCompatActivity {
+    @BindView(R.id.pager)
+    ViewPager pager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         ButterKnife.bind(this);
-        OnRecyclerviewClickListener onRecyclerviewClickListener =  new OnRecyclerviewClickListener() {
-            @Override
-            public void onRowClick(ImageData imageData) {
-                Intent intent = new Intent(MainImagesActivity.this,Main2Activity.class);
-                startActivity(intent);
-            }
-        };
-        CustomImagesAdapter adapter = new CustomImagesAdapter(this,onRecyclerviewClickListener);
-        adapter.setItems(generateList());
-            recyclerView.setHasFixedSize(true);
-            recyclerView.setLayoutManager(new GridLayoutManager(this,3));
-            recyclerView.setAdapter(adapter);
+        setUpViewPager(pager);
 
     }
 
+    public void setUpViewPager(ViewPager upViewPager) {
+        MyPageAdapter adapter = new MyPageAdapter(this.getSupportFragmentManager());
+        adapter.images=generateList();
+        upViewPager.setAdapter(adapter);
+    }
     ArrayList<ImageData> generateList() {
         ImageModel imageModel = new Gson().fromJson(imagesJson,ImageModel.class);
 
@@ -49,8 +36,6 @@ public class MainImagesActivity extends AppCompatActivity {
 
 
     }
-
-
     String imagesJson="{\n" +
             "    \"totalHits\":500,\n" +
             "    \"hits\":[\n" +
@@ -497,5 +482,4 @@ public class MainImagesActivity extends AppCompatActivity {
             "    ],\n" +
             "    \"total\":560759\n" +
             "}";
-
 }

@@ -62,7 +62,7 @@ public class CustomImagesAdapter extends RecyclerView.Adapter<CustomImagesAdapte
         });
 
         Picasso.with(context)
-                .load(image.getWebformatURL())
+                .load(image.getPreviewURL())
                 .centerInside()
                 .fit()
                 .into(holder.imageView);
